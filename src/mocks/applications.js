@@ -1,3 +1,5 @@
+// add a key isDuplicate: [true, false]
+
 export const ALL_APPLICATION = [
   {
     id: 1,
@@ -8,6 +10,7 @@ export const ALL_APPLICATION = [
     confluence: "",
     jira: "https://beyondinfinity1990.atlassian.net/jira/software/projects/FDA/boards/5",
     git: "https://github.com/lmajhi/beyond-infinity-ui",
+    isDuplicate: false,
   },
   {
     id: 2,
@@ -19,6 +22,7 @@ export const ALL_APPLICATION = [
       "https://beyondinfinity1990.atlassian.net/jira/software/projects/CR/boards/7",
     jira: "https://beyondinfinity1990.atlassian.net/jira/software/projects/CR/boards/7",
     git: "https://github.com/lmajhi/beyond-infinity-ui",
+    isDuplicate: false,
   },
   {
     id: 3,
@@ -30,6 +34,7 @@ export const ALL_APPLICATION = [
       "https://beyondinfinity1990.atlassian.net/jira/software/projects/OFOP/boards/6",
     jira: "https://beyondinfinity1990.atlassian.net/jira/software/projects/OFOP/boards/6",
     git: "https://github.com/lmajhi/beyond-infinity-ui",
+    isDuplicate: false,
   },
   {
     id: 4,
@@ -41,5 +46,6 @@ export const ALL_APPLICATION = [
       "https://beyondinfinity1990.atlassian.net/jira/software/projects/TYTR/boards/8",
     jira: "https://beyondinfinity1990.atlassian.net/jira/software/projects/TYTR/boards/8",
     git: "https://github.com/lmajhi/beyond-infinity-ui",
+    isDuplicate: false,
   },
 ];

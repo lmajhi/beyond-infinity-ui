@@ -56,6 +56,7 @@ const TopHeader = () => {
             <Stack direction={"column"}>
               <Link href="/">Search for Duplicates</Link>
               <Link href="/all">See All Applications</Link>
+              <Link href="/push">Push Data</Link>
             </Stack>
           </DrawerBody>
         </DrawerContent>

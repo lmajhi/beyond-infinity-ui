@@ -6,7 +6,6 @@ export const getSalutation = () => {
   } else if (curHr < 18) {
     return "Good Afternoon.";
   } else {
-    console.log("good evening");
     return "Good Evening.";
   }
 };
