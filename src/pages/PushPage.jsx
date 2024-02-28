@@ -18,6 +18,7 @@ import restClient from "../utils/restClient";
  * show a dropdown with options as Confluence, Jira
  *  if Conflunce show text input to enter " title"
  * if Jira show text input to enter "project name", "project id"
+ * if Github, show gitURL and project1
  */
 
 const BASE_URL = "";
@@ -26,24 +27,34 @@ const PushPage = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [jiraString, setJiraString] = useState("");
   const [confluenceString, setConfluenceString] = useState("");
+  const [githubObject, setGithubObject] = useState({
+    url: "",
+    projectId: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [isApiSuccess, setIsApiSuccess] = useState(false);
+  const [isApiFailure, setIsApiFailure] = useState(false);
 
   const isSubmitButtonDisable =
-    jiraString.length > 0 || confluenceString.length > 0;
+    jiraString.length > 0 ||
+    confluenceString.length > 0 ||
+    (githubObject.projectId && githubObject.url);
+  const resetAlerts = () => {
+    setIsApiSuccess(false);
+    setIsApiFailure(false);
+  };
   const makeApiCall = async () => {
     console.log("make API call");
     setIsLoading(true);
     if (selectedOption === "jira") {
       try {
         const response = await restClient.get("/api/v1/jira/epic" + jiraString);
+        setIsLoading(false);
         setIsApiSuccess(true);
       } catch (error) {
         console.log("error", error);
-      } finally {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 2000);
+        setIsApiFailure(true);
+        setIsLoading(false);
       }
     } else if (selectedOption === "confluence") {
       try {
@@ -51,15 +62,35 @@ const PushPage = () => {
         const response = await restClient.get(
           "/api/v1/confluence/title/" + confluenceString
         );
+        setIsLoading(false);
         setIsApiSuccess(true);
       } catch (error) {
         console.log("error", error);
-      } finally {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 2000);
+        setIsApiFailure(true);
+
+        setIsLoading(false);
       }
-    } else return;
+    } else if (selectedOption === "github") {
+      try {
+        const response = await restClient.get(
+          `/api/v1/git/${githubObject.projectId}/${githubObject.url}`
+        );
+        setIsLoading(false);
+        setIsApiSuccess(true);
+      } catch (error) {
+        console.log(error);
+        setIsApiFailure(true);
+        setIsLoading(false);
+      }
+    } else {
+      setIsLoading(false);
+
+      return;
+    }
+
+    setTimeout(() => {
+      resetAlerts();
+    }, 3000);
   };
   return (
     <Box minW={"80%"} minH={"100vh"} bg={"#f9fafc"}>
@@ -81,6 +112,7 @@ const PushPage = () => {
           >
             <option value="jira">JIRA</option>
             <option value="confluence">Confluence</option>
+            <option value="github">GitHub</option>
           </Select>
           {selectedOption === "jira" && (
             <Input
@@ -98,23 +130,53 @@ const PushPage = () => {
               onChange={(e) => setConfluenceString(e.target.value)}
             />
           )}
-          <Button
-            backgroundColor={"#db0011"}
-            isDisabled={!isSubmitButtonDisable}
-            isLoading={isLoading}
-            color={"white"}
-            _hover={{
-              bg: "#af000d",
-            }}
-            onClick={() => makeApiCall()}
-          >
-            Submit
-          </Button>
+          {selectedOption === "github" && (
+            <>
+              <Input
+                type="text"
+                placeholder="Enter github URL"
+                value={githubObject.url}
+                onChange={(e) =>
+                  setGithubObject({ ...githubObject, url: e.target.value })
+                }
+              />
+              <Input
+                type="text"
+                placeholder="Enter github ID"
+                value={githubObject.projectId}
+                onChange={(e) =>
+                  setGithubObject({
+                    ...githubObject,
+                    projectId: e.target.value,
+                  })
+                }
+              />
+            </>
+          )}
         </Stack>
+        <Button
+          backgroundColor={"#db0011"}
+          isDisabled={!isSubmitButtonDisable}
+          isLoading={isLoading}
+          color={"white"}
+          _hover={{
+            bg: "#af000d",
+          }}
+          mt={5}
+          onClick={() => makeApiCall()}
+        >
+          Submit
+        </Button>
         {isApiSuccess && (
           <Alert status="success" mt={10}>
             <AlertIcon />
-            Data Uploaded to the server. Fire On !
+            Data Uploaded to the server.
+          </Alert>
+        )}
+        {isApiFailure && (
+          <Alert status="error" mt={10}>
+            <AlertIcon />
+            There was an error processing your request.
           </Alert>
         )}
       </Container>
