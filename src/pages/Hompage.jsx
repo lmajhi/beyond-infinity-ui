@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Input,
@@ -32,6 +32,17 @@ const NoResultList = () => {
   );
 };
 const HomePage = () => {
+  const [requestString, setRequestSting] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const makeApiCall = () => {
+    setIsLoading(true);
+    console.log("make Api call", requestString);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  };
+
   return (
     <Box minW={"80%"} bg={"#f9fafc"}>
       <TopHeader />
@@ -51,20 +62,28 @@ const HomePage = () => {
             <InputLeftElement pointerEvents="none">
               <Search2Icon color="gray.300" />
             </InputLeftElement>
-            <Input type="text" placeholder="Enter project name or feature" />
+            <Input
+              type="text"
+              placeholder="Enter project name or feature"
+              value={requestString}
+              onChange={(e) => setRequestSting(e.target.value)}
+            />
           </InputGroup>
           <Button
             backgroundColor={"#db0011"}
+            isDisabled={requestString.length < 1}
+            isLoading={isLoading}
             color={"white"}
             _hover={{
               bg: "#af000d",
             }}
+            onClick={() => makeApiCall()}
           >
             Submit
           </Button>
         </Stack>
-        {true && <ResultList />}
-        {!true && <SkeletonList />}
+        {!isLoading && <ResultList />}
+        {isLoading && <SkeletonList />}
         {!true && <NoResultList />}
       </Container>
     </Box>

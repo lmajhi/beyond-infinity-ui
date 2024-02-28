@@ -36,14 +36,13 @@ const StageProgress = () => {
     },
   ];
   const AnimatedCicularProgress = ({ percentage }) => {
-    const [per, setPer] = useState(0);
-
-    useEffect(() => {
-      setTimeout(setPer(percentage), 5000);
-    });
     return (
-      <CircularProgress size="70px" value={per} color={getColor(per)}>
-        <CircularProgressLabel>{per}</CircularProgressLabel>
+      <CircularProgress
+        size="70px"
+        value={percentage}
+        color={getColor(percentage)}
+      >
+        <CircularProgressLabel>{percentage}</CircularProgressLabel>
       </CircularProgress>
     );
   };
