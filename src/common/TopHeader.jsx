@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import "./top-header.css";
+import { getSalutation } from "../utils/time";
 const TopHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -43,14 +44,14 @@ const TopHeader = () => {
         alignItems={"center"}
         justifyContent={"center"}
       >
-        <Text color={"white"}>Hello, User</Text>
+        <Text color={"white"}>Hello, {getSalutation()}</Text>
         <Divider orientation="vertical" color={"white"} margin={5} />
         <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
       </Box>
       <Drawer placement={"left"} onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">Routes</DrawerHeader>
           <DrawerBody>
             <Stack direction={"column"}>
               <Link href="/">Search for Duplicates</Link>
