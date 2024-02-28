@@ -1,0 +1,13 @@
+.btn-hsbc-primary {
+  background-color: #db0011;
+  color: #fff;
+  align-items: center;
+  border: 0;
+}
+
+.btn-hsbc-primary:hover {
+  background-color: #af000d;
+  border: 0;
+  color: #fff;
+  text-decoration: none;
+}

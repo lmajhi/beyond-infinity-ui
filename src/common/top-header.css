@@ -1,0 +1,25 @@
+.gradient-text {
+  background: linear-gradient(to right, crimson, #eb91a0, #087f44);
+  animation: rainbow 3s ease-in-out infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: rgba(0, 0, 0, 1);
+  display: block;
+  text-align: center;
+  transition: color 0.2s ease-in-out;
+}
+.gradient-text:hover {
+  color: rgba(0, 0, 0, 0);
+  text-decoration: underline;
+}
+@keyframes rainbow {
+  0% {
+    background-position: left;
+  }
+  50% {
+    background-position: right;
+  }
+  100% {
+    background-position: left;
+  }
+}
