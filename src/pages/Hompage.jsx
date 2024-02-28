@@ -1,20 +1,20 @@
 import React from "react";
 import {
   Box,
-  FormControl,
-  FormHelperText,
   Input,
   Container,
   Stack,
   Button,
   Text,
   Card,
+  InputGroup,
+  InputLeftElement,
 } from "@chakra-ui/react";
 import TopHeader from "../common/TopHeader";
 import ResultList from "./ResultList";
 import "./homepage.css";
 import SkeletonList from "./SkeletonList";
-//background-color: #af000d; onHOVER
+import { Search2Icon } from "@chakra-ui/icons";
 
 const NoResultList = () => {
   return (
@@ -47,11 +47,12 @@ const HomePage = () => {
           justifyContent={"center"}
           mt={10}
         >
-          {/* <FormControl mt={10}> */}
-          {/* <FormLabel>Search</FormLabel> */}
-          <Input />
-          {/* <FormHelperText>Search from existing application</FormHelperText> */}
-          {/* </FormControl> */}
+          <InputGroup>
+            <InputLeftElement pointerEvents="none">
+              <Search2Icon color="gray.300" />
+            </InputLeftElement>
+            <Input type="text" placeholder="Enter project name or feature" />
+          </InputGroup>
           <Button
             backgroundColor={"#db0011"}
             color={"white"}

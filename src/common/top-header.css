@@ -1,5 +1,5 @@
 .gradient-text {
-  background: linear-gradient(to right, crimson, #eb91a0, #087f44);
+  background: linear-gradient(to right, crimson, #e4e0e1, crimson);
   animation: rainbow 3s ease-in-out infinite;
   background-clip: text;
   -webkit-background-clip: text;
