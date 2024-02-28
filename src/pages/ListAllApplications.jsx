@@ -12,7 +12,10 @@ import {
 } from "@chakra-ui/react";
 
 import TopHeader from "../common/TopHeader";
-const arrayOfItem = [1, 2, 3, 4];
+import { ALL_APPLICATION } from "../mocks/applications";
+
+const arrayOfItem = ALL_APPLICATION;
+
 const ListAllApplication = () => {
   return (
     <Box minW={"80%"} bg={"#f9fafc"}>
@@ -24,37 +27,40 @@ const ListAllApplication = () => {
         <Box mt={20} minWidth={"90%"} bg={"#f9fafc"}>
           <List spacing={3}>
             {arrayOfItem.map((item) => (
-              <ListItem>
+              <ListItem key={item.id}>
                 <Card>
                   <CardBody>
                     <Stack>
                       <Text fontSize="2xl" align={"left"}>
-                        {`appName`}
+                        {item.appName}
                       </Text>
                       <Text fontSize="md" noOfLines={[3, 2, 2]} align={"left"}>
                         {" "}
-                        Features:{" "}
-                        {`hfksjdhlfhakjsdhjkfhaksjdhjfkhaskdhfkhajksdhfkhaskdhflhaskdhfkjhsdhfshdkhfjhsdhfjkshdkhfjksdhkjfhkjshdkjhfkjs`}
+                        Features: {item.description}
                       </Text>
                       <Text fontSize="md" align={"left"}>
-                        EIM: {`eim`}
+                        EIM: {item.eim}
                       </Text>
                       <Text fontSize="sm" align={"left"}>
                         Confluence{" "}
-                        <Link color="teal.500" href={`confluence`} isExternal>
-                          {`confluence`}
+                        <Link
+                          color="teal.500"
+                          href={item.confluence}
+                          isExternal
+                        >
+                          {item.confluence}
                         </Link>
                       </Text>
                       <Text fontSize="sm" align={"left"} isExternal>
                         JIRA{" "}
-                        <Link color="teal.500" href={`jira`}>
-                          {`jira`}
+                        <Link color="teal.500" href={item.jira}>
+                          {item.jira}
                         </Link>
                       </Text>
                       <Text fontSize="sm" align={"left"} isExternal>
                         Git{" "}
-                        <Link color="teal.500" href={`git`}>
-                          {`git`}
+                        <Link color="teal.500" href={item.jira}>
+                          {item.jira}
                         </Link>
                       </Text>
                     </Stack>

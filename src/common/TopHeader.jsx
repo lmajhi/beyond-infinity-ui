@@ -15,6 +15,7 @@ import {
 import React from "react";
 import "./top-header.css";
 import { getSalutation } from "../utils/time";
+
 const TopHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -23,7 +24,6 @@ const TopHeader = () => {
       height={70}
       bg={"black"}
       alignItems={"center"}
-      // justifyContent={"center"}
       justifyContent={"space-between"}
       display={"flex"}
       flexDirection={"row"}
