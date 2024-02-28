@@ -1,12 +1,4 @@
-import {
-  Box,
-  List,
-  ListItem,
-  ListIcon,
-  OrderedList,
-  UnorderedList,
-  Card,
-} from "@chakra-ui/react";
+import { Box, List, ListItem } from "@chakra-ui/react";
 import React from "react";
 import ItemCard from "./ItemCard";
 const arrayOfItem = [1, 2, 3, 4];
