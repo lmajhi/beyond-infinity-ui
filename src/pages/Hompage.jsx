@@ -50,7 +50,7 @@ const NoResultList = () => {
 const HomePage = () => {
   const [requestString, setRequestSting] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [apiResponse, setApiResponse] = useState(sampleResponse);
+  const [apiResponse, setApiResponse] = useState({});
   const makeApiCall = async () => {
     setIsLoading(true);
     try {

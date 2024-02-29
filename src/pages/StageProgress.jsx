@@ -61,12 +61,28 @@ const getAppName = (eim) => {
 
   return app.appName || "";
 };
+
+const getConfluenceUrl = (eim) => {
+  const app = ALL_APPLICATION.find((item) => item.eim === eim) || {};
+  return app.confluence || "";
+};
+
+const getGitUrl = (eim) => {
+  const app = ALL_APPLICATION.find((item) => item.eim === eim) || {};
+  return app.confluence || "";
+};
+
+const getJiraUrl = (eim) => {
+  const app = ALL_APPLICATION.find((item) => item.eim === eim) || {};
+  return app.jira || "";
+};
+
 const StageProgress = ({ stages } = sampleResponse) => {
   console.log("stageProgress-->", stages);
   const AnimatedCicularProgress = ({ percentage }) => {
     return (
       <CircularProgress
-        size="70px"
+        size="100px"
         value={percentage}
         color={getColor(percentage)}
       >
@@ -90,7 +106,9 @@ const StageProgress = ({ stages } = sampleResponse) => {
           {stages.conf_match && (
             <>
               <Text fontSize="sm">EIM : {stages?.conf_match["ID"] || ""}</Text>
-              <Text fontSize="sm">{getAppName(stages?.conf_match["ID"])}</Text>
+              <Text fontSize="sm">
+                App: {getAppName(stages?.conf_match["ID"])}
+              </Text>
             </>
           )}
           {/* {/* <Text fontSize="sm">{`stage.appName`}</Text> */}
@@ -109,7 +127,9 @@ const StageProgress = ({ stages } = sampleResponse) => {
           {stages.jira_match && (
             <>
               <Text fontSize="sm">EIM : {stages?.jira_match["ID"] || ""}</Text>
-              <Text fontSize="sm">{getAppName(stages?.jira_match["ID"])}</Text>
+              <Text fontSize="sm">
+                App: {getAppName(stages?.jira_match["ID"])}
+              </Text>
             </>
           )}
           {/* <Text fontSize="sm">{`stage.appName`}</Text>
@@ -128,7 +148,9 @@ const StageProgress = ({ stages } = sampleResponse) => {
           {stages.git_match && (
             <>
               <Text fontSize="sm">EIM : {stages?.git_match["ID"] || ""}</Text>
-              <Text fontSize="sm">{getAppName(stages?.git_match["ID"])}</Text>
+              <Text fontSize="sm">
+                App{getAppName(stages?.git_match["ID"])}
+              </Text>
             </>
           )}
           {/* <Text fontSize="sm">{`stage.appName`}</Text>
