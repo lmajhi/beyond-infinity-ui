@@ -16,7 +16,22 @@ import "./homepage.css";
 import SkeletonList from "./SkeletonList";
 import { Search2Icon } from "@chakra-ui/icons";
 import restClient from "../utils/restClient";
-
+const sampleResponse = {
+  conf_match: {
+    ID: "TYTR",
+    "Matching score": 35,
+  },
+  git_match: {
+    ID: "TYTR",
+    "Matching score": 35,
+  },
+  jira_match: {
+    ID: "FDA",
+    "Matching score": 32,
+  },
+  search_summary:
+    "A greeting or salutation to initiate a conversation or interaction with someone.",
+};
 const NoResultList = () => {
   return (
     <Card
@@ -35,13 +50,14 @@ const NoResultList = () => {
 const HomePage = () => {
   const [requestString, setRequestSting] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const [apiResponse, setApiResponse] = useState(sampleResponse);
   const makeApiCall = async () => {
     setIsLoading(true);
     try {
       const response = await restClient.post("/api/v1/search", {
         body: requestString,
       });
+      setApiResponse(response?.data);
       setIsLoading(false);
     } catch (error) {
       console.log("error", error);
@@ -50,7 +66,7 @@ const HomePage = () => {
   };
 
   return (
-    <Box minW={"80%"} bg={"#f9fafc"}>
+    <Box minW={"80%"} bg={"#f9fafc"} minH={"100vh"}>
       <TopHeader />
 
       <Container mt={50} minW={"80%"}>
@@ -88,7 +104,9 @@ const HomePage = () => {
             Submit
           </Button>
         </Stack>
-        {!isLoading && <ResultList />}
+        {!isLoading && Object.keys(apiResponse).length > 0 && (
+          <ResultList response={apiResponse} />
+        )}
         {isLoading && <SkeletonList />}
         {!true && <NoResultList />}
       </Container>

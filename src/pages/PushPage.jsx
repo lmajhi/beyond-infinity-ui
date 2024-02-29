@@ -54,8 +54,9 @@ const PushPage = () => {
     setIsLoading(true);
     if (selectedOption === "jira") {
       try {
-        const response = await restClient.get(
-          "/api/v1/jira/epic" + jiraString,
+        const response = await restClient.post(
+          "/api/v1/jira/epic/" + jiraString,
+          {},
           axiosConfig
         );
         setIsLoading(false);
@@ -68,8 +69,9 @@ const PushPage = () => {
     } else if (selectedOption === "confluence") {
       try {
         console.log("confluenceString");
-        const response = await restClient.get(
+        const response = await restClient.post(
           "/api/v1/confluence/title/" + confluenceString,
+          {},
           axiosConfig
         );
         setIsLoading(false);
@@ -82,8 +84,10 @@ const PushPage = () => {
       }
     } else if (selectedOption === "github") {
       try {
-        const response = await restClient.get(
-          `/api/v1/git/${githubObject.projectId}/${githubObject.url}`,
+        const response = await restClient.post(
+          `/api/v1/git/${githubObject.projectId}`,
+
+          githubObject.url,
           axiosConfig
         );
         setIsLoading(false);

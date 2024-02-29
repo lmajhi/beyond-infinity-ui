@@ -9,6 +9,7 @@ import {
   Text,
   Link,
   Container,
+  Tag,
 } from "@chakra-ui/react";
 
 import TopHeader from "../common/TopHeader";
@@ -80,6 +81,11 @@ const ListAllApplication = () => {
                             {item.jira}
                           </Link>
                         </Text>
+                        {item.isDuplicate && (
+                          <Tag size="sm" width={"80px"} colorScheme="red">
+                            Duplicate
+                          </Tag>
+                        )}
                       </Stack>
                     </CardBody>
                   </Card>

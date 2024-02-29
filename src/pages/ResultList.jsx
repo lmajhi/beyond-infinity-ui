@@ -1,17 +1,12 @@
 import { Box, List, ListItem } from "@chakra-ui/react";
 import React from "react";
 import ItemCard from "./ItemCard";
-const arrayOfItem = [1, 2, 3, 4];
-const ResultList = () => {
+
+const ResultList = ({ response }) => {
+  console.log("resultLiust", response);
   return (
     <Box mt={20} minWidth={"90%"} bg={"#f9fafc"}>
-      <List spacing={3}>
-        {arrayOfItem.map((item) => (
-          <ListItem>
-            <ItemCard applicationIndex={item} />
-          </ListItem>
-        ))}
-      </List>
+      <ItemCard responseData={response} />
     </Box>
   );
 };

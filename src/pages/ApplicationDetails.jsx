@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Stack, Text, Link } from "@chakra-ui/react";
+import { Box, Stack, Text, Link, Tag } from "@chakra-ui/react";
 
 const ApplicationDetails = ({
   appName = "appName",
@@ -8,6 +8,7 @@ const ApplicationDetails = ({
   confluence = "http://localjhpssadasdfsafasasdasdasdas",
 
   jira = "http://jira.comasdasdasdasasdsadasdasdasdasdasasdasdasdasdasdasd",
+  isDuplicate = false,
 }) => {
   return (
     <Box maxWidth={"50%"} flexWrap={"wrap"} flexGrow={1}>
@@ -36,6 +37,7 @@ const ApplicationDetails = ({
             {jira}
           </Link>
         </Text>
+        {isDuplicate && <Tag>Duplicate</Tag>}
       </Stack>
     </Box>
   );

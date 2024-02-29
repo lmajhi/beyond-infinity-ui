@@ -4,7 +4,7 @@ import "./itemcard.css";
 import ApplicationDetails from "./ApplicationDetails";
 import StageProgress from "./StageProgress";
 
-const ItemCard = ({ applicationIndex }) => {
+const ItemCard = ({ responseData }) => {
   return (
     <Card
       maxH={"max-content"}
@@ -15,16 +15,9 @@ const ItemCard = ({ applicationIndex }) => {
       className="item-card"
     >
       <CardBody>
-        <Stack
-          isInline={true}
-          alignItems={"center"}
-          justifyContent={"space-between"}
-          h={150}
-        >
-          <ApplicationDetails />
-          <Divider orientation="vertical" />
-          <StageProgress />
-        </Stack>
+        {/* <ApplicationDetails />
+          <Divider orientation="vertical" /> */}
+        <StageProgress stages={responseData} />
       </CardBody>
     </Card>
   );
