@@ -36,7 +36,7 @@ const TopHeader = () => {
         as="b"
         onClick={onOpen}
       >
-        HSBC - Dupli
+        Dupli
       </Text>
       <Box
         display={"flex"}

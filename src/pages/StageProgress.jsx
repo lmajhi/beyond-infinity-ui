@@ -24,16 +24,16 @@ const StageProgress = () => {
       label: "Code Build",
       percentage: 60,
     },
-    {
-      id: "infra_build",
-      label: "Infra Build",
-      percentage: 80,
-    },
-    {
-      id: "code_test",
-      label: "Code Test",
-      percentage: 70,
-    },
+    // {
+    //   id: "infra_build",
+    //   label: "Infra Build",
+    //   percentage: 80,
+    // },
+    // {
+    //   id: "code_test",
+    //   label: "Code Test",
+    //   percentage: 70,
+    // },
   ];
   const AnimatedCicularProgress = ({ percentage }) => {
     return (
@@ -48,9 +48,9 @@ const StageProgress = () => {
   };
   return (
     <Stack direction={"row"} spacing={8} flexWrap={"wrap"} flexShrink={"2"}>
-      {stages.map((stage) => {
+      {stages.map((stage, idx) => {
         return (
-          <Stack direction={"column"}>
+          <Stack direction={"column"} key={idx}>
             <AnimatedCicularProgress percentage={stage.percentage} />
             <Text fontSize="sm">{stage.label}</Text>
           </Stack>

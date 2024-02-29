@@ -15,6 +15,7 @@ import ResultList from "./ResultList";
 import "./homepage.css";
 import SkeletonList from "./SkeletonList";
 import { Search2Icon } from "@chakra-ui/icons";
+import restClient from "../utils/restClient";
 
 const NoResultList = () => {
   return (
@@ -35,12 +36,17 @@ const HomePage = () => {
   const [requestString, setRequestSting] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const makeApiCall = () => {
+  const makeApiCall = async () => {
     setIsLoading(true);
-    console.log("make Api call", requestString);
-    setTimeout(() => {
+    try {
+      const response = await restClient.post("/api/v1/search", {
+        body: requestString,
+      });
       setIsLoading(false);
-    }, 2000);
+    } catch (error) {
+      console.log("error", error);
+      setIsLoading(false);
+    }
   };
 
   return (

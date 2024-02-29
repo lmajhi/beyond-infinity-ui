@@ -12,6 +12,12 @@ import {
 import React, { useState } from "react";
 import TopHeader from "../common/TopHeader";
 import restClient from "../utils/restClient";
+const axiosConfig = {
+  headers: {
+    Authorization:
+      "Basic YmV5b25kaW5maW5pdHkxOTkwQGdtYWlsLmNvbTpBVEFUVDN4RmZHRjBsTjEwY1ptbnJtZ3NSVHJxNFI4TjNtcGpBblJUOFNOREQ1MURoX0d3U2c2dEtrd00zMGFmSmJkN0FLTnpoOWxaYTJXMEFfbWVYVmlDalFGRHVMTHJ5V3JuZlZtdjM4SjNqcUhBcS11aEw2LWsxUTBNQVV3Qy1YUktPVjFQTEFpZEw0bGpQQXZCYmU5Z3VjQ3hpakM2aFFzcTB0Q3pfTllSNXZZaTFBdXBxa3M9RjZBQjEzMUE=",
+  },
+};
 /**
  *
  * @returns
@@ -48,7 +54,10 @@ const PushPage = () => {
     setIsLoading(true);
     if (selectedOption === "jira") {
       try {
-        const response = await restClient.get("/api/v1/jira/epic" + jiraString);
+        const response = await restClient.get(
+          "/api/v1/jira/epic" + jiraString,
+          axiosConfig
+        );
         setIsLoading(false);
         setIsApiSuccess(true);
       } catch (error) {
@@ -60,7 +69,8 @@ const PushPage = () => {
       try {
         console.log("confluenceString");
         const response = await restClient.get(
-          "/api/v1/confluence/title/" + confluenceString
+          "/api/v1/confluence/title/" + confluenceString,
+          axiosConfig
         );
         setIsLoading(false);
         setIsApiSuccess(true);
@@ -73,7 +83,8 @@ const PushPage = () => {
     } else if (selectedOption === "github") {
       try {
         const response = await restClient.get(
-          `/api/v1/git/${githubObject.projectId}/${githubObject.url}`
+          `/api/v1/git/${githubObject.projectId}/${githubObject.url}`,
+          axiosConfig
         );
         setIsLoading(false);
         setIsApiSuccess(true);
