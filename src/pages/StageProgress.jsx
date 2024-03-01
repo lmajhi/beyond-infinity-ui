@@ -5,6 +5,7 @@ import {
   CircularProgress,
   CircularProgressLabel,
   Divider,
+  Box,
 } from "@chakra-ui/react";
 import { getColor } from "../utils/colors";
 import { ALL_APPLICATION } from "../mocks/applications";
@@ -85,6 +86,10 @@ const StageProgress = ({ stages } = sampleResponse) => {
         size="100px"
         value={percentage}
         color={getColor(percentage)}
+        display={"flex"}
+        alignItems={"center"}
+        justifyContent={"center"}
+        flexWrap={"wrap"}
       >
         <CircularProgressLabel>{percentage}%</CircularProgressLabel>
       </CircularProgress>
@@ -93,7 +98,14 @@ const StageProgress = ({ stages } = sampleResponse) => {
   return (
     <>
       <Text fontSize="xxl">Prospective Matches</Text>
-      <Stack direction={"row"} spacing={180} mt={5}>
+      <Box
+        display={"flex"}
+        flexDirection={"row"}
+        alignItems={"center"}
+        justifyContent={"space-evenly"}
+        flexWrap={"wrap"}
+        mt={5}
+      >
         <Stack direction={"column"}>
           {stages.conf_match && (
             <AnimatedCicularProgress
@@ -156,7 +168,7 @@ const StageProgress = ({ stages } = sampleResponse) => {
           {/* <Text fontSize="sm">{`stage.appName`}</Text>
           <Text fontSize="sm">{`stage.url`}</Text> */}
         </Stack>
-      </Stack>
+      </Box>
     </>
   );
 };
